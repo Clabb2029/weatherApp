@@ -1,0 +1,55 @@
+.containers {
+  max-width: 100vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/images/nuages.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.home_container {
+  min-height: 100vh;
+}
+
+.home_title {
+  font-size: 2rem;
+  text-shadow: 1px 1px 2px black;
+}
+
+.home_subheading {
+  text-shadow: 1px 1px 1px black;
+  margin-top: 4vh;
+  font-size: 1.5rem;
+}
+
+
+
+.weather_container {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.cities {
+  background-color: white;
+  box-shadow: 2px 2px 2px #525353;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 10px;
+}
+
+.icon {
+  height: 3rem;
+}
+
+.error_message {
+  color: rgb(102, 4, 4);
+}
