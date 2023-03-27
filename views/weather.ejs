@@ -28,27 +28,28 @@
             <img class="col-xs-12 col-lg-6" src="/images/map.jpg" alt="map">
 
             <div class="col-xs-12 col-lg-6">
-                <p class="text-center mt-3"><i class="fa-solid fa-arrows-rotate"></i> Update Cities</p>
+                <a href="/update_cities"><p class="text-center mt-3 update"><i class="fa-solid fa-arrows-rotate"></i> Update Cities</p></a>
 
                 <% if (error_message) { %>
                     <p class="text-center error_message"><%= error_message %></p>
                 <% } %>
 
-                <% if(cityList.length > 0) { for (var i=0 ; i<cityList.length ; i++) { %>
+                <% if(cities.length > 0) { 
+                  for (var i=0 ; i<cities.length ; i++) { %>
                     
                     <div class="cities">
-                        <span><%= cityList[i].ville %></span>
+                        <span><%= cities[i].name %></span>
                         <span>
-                            <%= cityList[i].temps %> 
-                            <img class="icon" src="<%= cityList[i].icon%>">
-                            <span class="badge text-bg-secondary"><%= cityList[i].temp_min %>°C</span>
-                            <span class="badge text-bg-warning"><%= cityList[i].temp_max %>°C</span>
+                            <%= cities[i].desc %> 
+                            <img class="icon" src="<%= cities[i].icon%>">
+                            <span class="badge text-bg-secondary"><%= cities[i].temp_min %>°C</span>
+                            <span class="badge text-bg-warning"><%= cities[i].temp_max %>°C</span>
                         </span>
-                        <a href="/delete_city?position=<%=[i]%>"><i class="fa-solid fa-xmark"></i></a>                    
+                        <a href="/delete_city?_id=<%=cities[i]._id%>"><i class="fa-solid fa-xmark"></i></a>                    
                     </div>
 
-                <% } } else { %>
-
+                  <% } 
+                } else { %>
                     <p class="col text-center mt-5">Please search a city</p>
                 <% } %>
                 

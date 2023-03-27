@@ -53,3 +53,12 @@
 .error_message {
   color: rgb(102, 4, 4);
 }
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+.update {
+  color: white;
+}
