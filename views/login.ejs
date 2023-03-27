@@ -13,34 +13,36 @@
 
           <div class="col-xs-12 col-sm-8 col-lg-4">
             <h2 class="home_subheading">Sign Up</h2>
-            <form method="post" action="">
+            <form method="POST" action="/sign_up">
               <div class="mb-3 text-start">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter your username here...">
+                <input type="text" class="form-control" id="username" placeholder="Enter your username here..." name="username">
               </div>
               <div class="mb-3 text-start">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email here...">
+                <input type="email" class="form-control" id="email" placeholder="Enter your email here..." name="email">
               </div>
               <div class="mb-3 text-start">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password here...">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password here..." name="password">
               </div>
+              <p class="error_message"><%= error_signup %></p>
               <button type="submit" class="btn btn-secondary">Submit</button>
-            </form method="post" action="">
+            </form>
           </div>
 
           <div class="col-xs-12 col-sm-8 col-lg-4">
             <h2 class="home_subheading">Sign In</h2>
-            <form>
+            <form method="POST" action="/sign_in">
               <div class="mb-3 text-start">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email here...">
+                <input type="email" class="form-control" id="email" placeholder="Enter your email here..." name="email">
               </div>
               <div class="mb-3 text-start">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password here...">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password here..." name="password">
               </div>
+              <p class="error_message"><%= error_signin %></p>
               <button type="submit" class="btn btn-secondary">Submit</button>
             </form>
           </div>
