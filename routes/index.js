@@ -18,75 +18,15 @@ router.get('/', function(req, res, next) {
 });
 
 
-// POST Sign Up
-router.post('/sign_up', async function(req, res, next) {
-
-  var alreadyExists = false;
-
-  if (await UserModel.findOne({email: req.body.email })) {
-    alreadyExists = true;
-  }
-
-  if (!alreadyExists) {
-    var newUser = new UserModel ({
-      username: req.body.username,
-      email: req.body.email,
-      password:  req.body.password
-      });
-      var UserSaved = await newUser.save();
-  
-
-    req.session.user = {
-      username: UserSaved.username,
-      _id : UserSaved._id
-    } 
-
-    res.redirect('weather');
-
-  } else {
-    error_signup = "An account already exists with this email";
-    res.render('login', { title: 'Connexion - Weather App', error_signup:error_signup, error_signin:error_signin });
-  }
-});
-
-
-// POST Sign In
-router.post('/sign_in', async function(req, res, next) {
-
-  var user = await UserModel.findOne({
-    email: req.body.email, 
-    password: req.body.password 
-  });
-
-  if (user) {
-    req.session.user = {
-      username: user.username,
-      _id : user._id
-    }
-    res.redirect('weather');
-  } else {
-    error_signin = "Email or password incorrect";
-    res.render('login', { title: 'Connexion - Weather App', error_signup:error_signup, error_signin:error_signin });
-  }
-});
-
-
-// GET logout
-router.get('/logout', function(req, res, next) {
-  req.session.user = null;
-  res.redirect('/');
-});
-
-
 // GET weather page
 router.get('/weather', async function(req, res, next) {
 
-  if (req.session.user == null) {
-    res.redirect('/');
-  } else {
+  // if (req.session.user == null) {
+  //   res.redirect('/');
+  // } else {
     cities = await CityModel.find();
     res.render('weather', { title: 'Accueil - Weather App', cities:cities, error_message:error_message });
-  }
+  // }
 });
 
 
@@ -112,7 +52,9 @@ router.post('/add_city', async function(req, res, next) {
           desc: dataAPI.weather[0].description,
           img: "https://openweathermap.org/img/wn/" + dataAPI.weather[0].icon + "@2x.png",
           temp_min: dataAPI.main.temp_min,
-          temp_max: dataAPI.main.temp_max
+          temp_max: dataAPI.main.temp_max,
+          long: dataAPI.coord.lon,
+          lat: dataAPI.coord.lat
         });
         
         await newCity.save();
@@ -150,7 +92,9 @@ router.get('/update_cities', async function(req, res, next) {
       desc: dataAPI.weather[0].description,
       img: "https://openweathermap.org/img/wn/" + dataAPI.weather[0].icon + "@2x.png",
       temp_min: dataAPI.main.temp_min,
-      temp_max: dataAPI.main.temp_max
+      temp_max: dataAPI.main.temp_max,
+      long: dataAPI.coord.lon,
+      lat: dataAPI.coord.lat
     })
   }
   cities = await CityModel.find();

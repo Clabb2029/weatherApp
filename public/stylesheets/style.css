@@ -62,3 +62,7 @@ a:link {
 .update {
   color: white;
 }
+
+#map {
+  height: 60vh;
+}
